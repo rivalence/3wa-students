@@ -12,6 +12,12 @@ mangaRouter.get("/", (req, res) => {
   res.json(mangas);
 });
 
+mangaRouter.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const manga = mangas.find((manga) => manga.id === parseInt(id));
+  res.json(manga);
+});
+
 mangaRouter.post("/", (req, res) => {
   const { title, topic } = req.body;
   const newManga = { id: mangas[mangas.length - 1].id + 1, title, topic };
