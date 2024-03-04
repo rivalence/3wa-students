@@ -1,8 +1,12 @@
-import fs from "fs";
+import express from "express"
+import mangaRouter from "./routes/manga.js";
 
-fs.writeFile("file.txt", "Contenu du fichier", function (err) {});
+const app = express()
 
-fs.readFile("file.txt", (err, data) => {
-  if (err) throw err;
-  console.log(data.toString());
-});
+app.use(express.json());
+
+app.use("/", mangaRouter)
+
+app.listen(8000, ()=>{
+    console.log(`Server is listening in port 8000`);
+})
